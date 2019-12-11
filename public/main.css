@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+.form-button {
+    width: 100px;
+    margin-top: 10px;
+    color:white;
+    background-color: blue;
+}
+
+.form-button:hover {
+    cursor: pointer
+}

@@ -15,6 +15,17 @@ conn.connect();
 
 //db query functions here
 
+const getTodos = (obj, cb ) => {
+    const queryString = `SELECT * FROM todos`;
+
+    conn.query(queryString, (err, todos) => {
+        if (err) {
+            cb(err);
+        }
+        cb(null, todos);
+    })
+}
+
 const insertTask = (task, cb) => {
     console.log(task);
     const queryString = `INSERT INTO todos (todo, createdDate, completionDate) VALUE 
@@ -30,4 +41,4 @@ const insertTask = (task, cb) => {
 }
 
 
-module.exports = { insertTask };
+module.exports = { insertTask, getTodos };

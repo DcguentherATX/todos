@@ -9,8 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static('public'));
 
-app.get('/', (req, res) => {
-    console.log(req.body);
+app.get('/todos', (req, res) => {
+    db.getTodos({}, (err, todos) => {
+        if (err) {
+            console.log('error getting all todos');
+        }
+        console.log(todos);
+        res.statusCode = 200;
+        res.send(todos);
+    })
 })
 
 app.post('/todos', (req, res) => {

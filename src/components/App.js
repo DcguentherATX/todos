@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import Form from './Form';
+import TodoDisplay from './TodoDisplay';
 
 class App extends React.Component {
     constructor(props) {
@@ -48,6 +49,20 @@ class App extends React.Component {
         })
     }
 
+    // lifecycle methods
+
+    componentDidMount() {
+        Axios.get('/todos')
+        .then((response) => {
+            this.setState({
+                todos: response.data
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
     render() {
         return (
             <div>
@@ -58,6 +73,7 @@ class App extends React.Component {
                 handleSubmit={this.handleSubmit}
                 />
                 <h3>Pending Todos</h3>
+                <TodoDisplay todos={this.state.todos} />
             </div>
         )
     }
